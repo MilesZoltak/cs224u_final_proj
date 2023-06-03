@@ -44,7 +44,7 @@ def main():
     for epoch in range(1, EPOCHS + 1):
         epoch_start_time = time.time()
         # breakpoint()
-        train(train_dataloader, optimizer, model, criterion)
+        train(train_dataloader, optimizer, model, criterion, epoch)
         accu_val = evaluate(valid_dataloader, model, criterion)
         if total_accu is not None and total_accu > accu_val:
             scheduler.step()

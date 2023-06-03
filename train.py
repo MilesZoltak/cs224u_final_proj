@@ -38,7 +38,8 @@ def evaluate(dataloader, model, criterion):
 
     with torch.no_grad():
         for idx, (label, text) in enumerate(dataloader):
-            predicted_label = model(text)
+            predicted_label = model(text).squeeze()
+            label = label.to(torch.float32)
             loss = criterion(predicted_label, label)
             total_acc += (predicted_label.argmax(1) == label).sum().item()
             total_count += label.size(0)

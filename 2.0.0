@@ -1,5 +1,0 @@
-Collecting portalocker
-  Downloading portalocker-2.7.0-py2.py3-none-any.whl (15 kB)
-Requirement already satisfied: pywin32>=226 in c:\python310\lib\site-packages (from portalocker) (305)
-Installing collected packages: portalocker
-Successfully installed portalocker-2.7.0

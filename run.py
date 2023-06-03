@@ -9,6 +9,7 @@ import time
 from processing import Processing
 
 def main():
+    print("Training on device: ", torch.device("cuda" if torch.cuda.is_available() else "cpu"))
     # Hyperparameters
     EPOCHS = 10 # epoch
     LR = 5  # learning rate

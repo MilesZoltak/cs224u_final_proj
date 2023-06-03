@@ -5,6 +5,7 @@ from model import TextClassificationModel
 from torch.utils.data.dataset import random_split
 from torchtext.data.functional import to_map_style_dataset
 import torch
+from tqdm import tqdm
 
 def train(dataloader, optimizer, model, criterion, epoch):
     model.train()
@@ -12,7 +13,7 @@ def train(dataloader, optimizer, model, criterion, epoch):
     log_interval = 500
     start_time = time.time()
 
-    for idx, (label, text) in enumerate(dataloader):
+    for idx, (label, text) in tqdm(enumerate(dataloader), total=len(dataloader)):
         optimizer.zero_grad()
         predicted_label = model(text).squeeze()
         label = label.to(torch.float32)
@@ -36,7 +37,7 @@ def evaluate(dataloader, model, criterion):
     total_acc, total_count = 0, 0
 
     with torch.no_grad():
-        for idx, (label, text) in enumerate(dataloader):
+        for idx, (label, text) in tqdm(enumerate(dataloader), total=len(dataloader)):
             predicted_label = model(text).squeeze()
             label = label.to(torch.float32)
             loss = criterion(predicted_label, label)

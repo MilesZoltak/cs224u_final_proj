@@ -6,7 +6,7 @@ from torch.utils.data.dataset import random_split
 from torchtext.data.functional import to_map_style_dataset
 import torch
 
-def train(dataloader, optimizer, model, criterion):
+def train(dataloader, optimizer, model, criterion, epoch):
     model.train()
     total_acc, total_count = 0, 0
     log_interval = 500
@@ -25,10 +25,9 @@ def train(dataloader, optimizer, model, criterion):
         total_count += label.size(0)
         if idx % log_interval == 0 and idx > 0:
             elapsed = time.time() - start_time
-            print("im a bastard")
-            # print('| epoch {:3d} | {:5d}/{:5d} batches '
-            #     '| accuracy {:8.3f}'.format(epoch, idx, len(dataloader),
-            #                                 total_acc/total_count))
+            print('| epoch {:3d} | {:5d}/{:5d} batches '
+                '| accuracy {:8.3f}'.format(epoch, idx, len(dataloader),
+                                            total_acc/total_count))
             total_acc, total_count = 0, 0
             start_time = time.time()
 
